@@ -12,6 +12,7 @@ def modInverse(a, m):
     y = 0
     x = 1
 
+    # For (n mod 1) for any n will always be equal to zero
     if (m == 1):
         return 0
 
