@@ -1,68 +1,54 @@
-# Python3 code to implement Hill Cipher 
+def encrypt(message, key):
+    if len(key) != 4:
+        print("The length of key should be of 4")
+        return
 
-keyMatrix = [[0] * 3 for i in range(3)]
+    key = [[alphabets[key[0]],alphabets[key[1]]], [alphabets[key[2]],alphabets[key[3]]]]
 
-# Generate vector for the message 
-messageVector = [[0] for i in range(3)]
+    column_vector_generator = convertMessageToVectors(message)
+    cipher = ''
+    for each in column_vector_generator:
+        cipher_vector = multiply(key, each)
+        cipher += convertCipherVectorToText(cipher_vector)
+    return cipher
 
-# Generate vector for the cipher 
-cipherMatrix = [[0] for i in range(3)]
+def convertMessageToVectors(message):
+    plain_text_column_vector = []
+    for index, alpha in enumerate(message):
+        if index % 2 == 0 and index != 0:
+            yield plain_text_column_vector
+            plain_text_column_vector = []
+        plain_text_column_vector.append([alphabets[alpha]])
 
+    yield plain_text_column_vector
 
-# Following function generates the
-# key matrix for the key string 
-def getKeyMatrix(key):
-    k = 0
-    for i in range(3):
-        for j in range(3):
-            keyMatrix[i][j] = ord(key[k]) % 65
-            k += 1
+def multiply(key, vector):
+    resultant = [[0],[0]]
+    for i in range(len(key)):
+        for j in range(len(vector[0])):
+            for l in range(len(vector)):
+                resultant[i][j] += key[i][l] * vector[l][j]
+                resultant[i][j] %= 26
+    return resultant
 
-
-# Following function encrypts the message
-def encrypt(messageVector):
-    for i in range(3):
-        for j in range(1):
-            cipherMatrix[i][j] = 0
-            for x in range(3):
-                cipherMatrix[i][j] += (keyMatrix[i][x] *
-                                       messageVector[x][j])
-            cipherMatrix[i][j] = cipherMatrix[i][j] % 26
-
-
-def HillCipher(message, key):
-    # Get key matrix from the key string
-    getKeyMatrix(key)
-
-    # Generate vector for the message 
-    for i in range(3):
-        messageVector[i][0] = ord(message[i]) % 65
-
-    # Following function generates 
-    # the encrypted vector 
-    encrypt(messageVector)
-
-    # Generate the encrypted text  
-    # from the encrypted vector 
-    CipherText = []
-    for i in range(3):
-        CipherText.append(chr(cipherMatrix[i][0] + 65))
-
-        # Finally print the ciphertext
-    print("Ciphertext: ", "".join(CipherText))
+def convertCipherVectorToText(vector):
+   cipher = ''
+   for i in range(len(vector)):
+       for j in range(len(vector[0])):
+           cipher += chr(vector[i][j]+65)
+   return cipher
 
 
-# Driver Code
-def main():
-    # Get the message to
-    # be encrypted 
-    message = "ACT"
-
-    # Get the key 
-    key = "GYBNQKURP"
-
-    HillCipher(message, key)
+def decrypt():
+    pass
 
 
-if __name__ == "__main__":
-    main() 
+
+
+
+if "__main__" == __name__:
+    alphabets = {}
+    for each in range(65, 91):
+        alphabets[chr(each)] = each - 65
+
+    print(encrypt('SHORTEXAMPLE', 'HILL'))
