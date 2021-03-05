@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7f0d89d-3c0a-4aaf-838c-ed9517505794" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hill_cipher.py" beforeDir="false" afterPath="$PROJECT_DIR$/hill_cipher.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +68,7 @@
       <workItem from="1614865931570" duration="4864000" />
       <workItem from="1614918668640" duration="9892000" />
       <workItem from="1614958601758" duration="962000" />
-      <workItem from="1614960209893" duration="183000" />
+      <workItem from="1614960209893" duration="739000" />
     </task>
     <servers />
   </component>
